@@ -41,13 +41,13 @@ Per class:
  
 ## Three Qualitative Error Examples
  
-**Example 1 — Negative misclassified as Neutral**
+**Example 1 — Neutral misclassified as Negative**
  
-- Text: `i m fed of this <url> has posted it add every where`
-- Gold label: negative
-- Predicted label: neutral
-- Gold-class probability: 0.2565
-The review expresses frustration ("fed of this") but the truncated phrasing and URL placeholder likely obscured the sentiment signal. Without clear negative keywords like "terrible" or "broken", the model defaulted to neutral.
+- Text: `used to be great. now lots of issues with network. i keep getting no network errors, as failed to update errors even when signal is great, or i'm connected to my wi-fi at home.`
+- Gold label: neutral
+- Predicted label: negative
+- Gold-class probability: 0.1905
+The review is factually reporting problems but was likely rated neutral by the annotator because it is descriptive rather than emotionally charged. However words like "errors", "failed", and "no network" are strong negative signal words that triggered the model's negative prediction. This is a classic cue-word trigger failure where surface-level vocabulary overrides the overall tone.
  
 **Example 2 — Neutral misclassified as Positive**
  
@@ -55,7 +55,7 @@ The review expresses frustration ("fed of this") but the truncated phrasing and 
 - Gold label: neutral
 - Predicted label: positive
 - Gold-class probability: 0.0997
-This is a genuinely ambiguous case. The word "nice" strongly pulls toward positive, and the model assigned it confidently (gold probability only 0.10). A human annotator likely rated it neutral because it lacks enthusiasm, but the surface-level language reads as positive — a reasonable model failure.
+This is a genuinely ambiguous case that is hard even for a human annotator. The word "nice" strongly pulls toward positive, and the model assigned it confidently (gold probability only 0.10). The annotator likely rated it neutral because it lacks enthusiasm or specifics, but the surface-level language reads as positive. This calibrates expectations for production use — the model will confidently misclassify short, mildly positive neutral reviews.
  
 **Example 3 — Positive misclassified as Neutral**
  
@@ -63,8 +63,8 @@ This is a genuinely ambiguous case. The word "nice" strongly pulls toward positi
 - Gold label: positive
 - Predicted label: neutral
 - Gold-class probability: 0.3196
-The conjunction "but" followed by a complaint ("slow workflow") created mixed sentiment that confused the model. Despite the overall positive rating, the criticism dominated the model's prediction. This highlights a known weakness of single-label classifiers on mixed-sentiment text.
- 
+The conjunction "but" followed by a complaint ("slow workflow") created mixed sentiment that the model could not resolve. Despite the overall positive rating from the annotator, the criticism dominated the model's prediction. This highlights a known weakness of single-label classifiers on mixed-sentiment text — the model overweighted the negative phrase and missed the overall positive intent.
+
 ## Hugging Face Hub Model URL
  
 https://huggingface.co/Balbdour/m7-app-review-sentiment
