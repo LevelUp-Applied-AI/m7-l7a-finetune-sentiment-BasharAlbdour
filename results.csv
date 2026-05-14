@@ -1,0 +1,34 @@
+id,hypothesis_category,text,expected_label,rationale,predicted_label,predicted_probability,correct
+1,negation,The latest update did not improve battery life at all.,negative,Tests whether the model picks up the negation cue or just the trigger word 'improve',negative,0.8766,True
+2,lexical_trigger,This app is no longer reliable on my phone.,negative,Strong positive cue 'reliable' negated by 'no longer'; tests cue-vs-context handling,negative,0.9011,True
+3,domain_shift,The team won the championship final last weekend.,neutral,Sports content unrelated to app-review training; tests domain-shift robustness,neutral,0.4144,True
+4,lexical_trigger,The login recovery process turned into a cat-and-mouse game with support.,negative,"The cybersecurity article pushed the model strongly negative because of conflict wording, so I reused similar wording in a mostly descriptive review",neutral,0.5677,False
+5,lexical_trigger,Updating permissions feels like fighting the app instead of configuring it.,negative,Uses conflict-style wording without mentioning a direct bug or crash,neutral,0.7321,False
+6,lexical_trigger,"The setup was painful the first day, but after that I stopped noticing it.",neutral,I wanted to see if the model locks onto the word 'painful' even though the sentence becomes more balanced later,neutral,0.7304,True
+7,lexical_trigger,Learning all the shortcuts was honestly horrible for the first week.,negative,The review complains about the learning curve more than the app itself,negative,0.9368,True
+8,lexical_trigger,"The redesign looks cleaner, but navigating it feels like trench warfare.",negative,Mixes positive UI wording with exaggerated conflict language,neutral,0.6913,False
+9,negation,I wouldn't call the new sync system reliable yet.,negative,Tests whether the model notices the negation before the positive cue word,neutral,0.7364,False
+10,negation,The update didn't completely ruin the experience.,neutral,The sentence sounds partly negative and partly relieved at the same time,negative,0.7209,False
+11,negation,The backup feature never actually failed during testing.,positive,Uses a negative trigger word inside a positive meaning,neutral,0.5342,False
+12,negation,I can't really say the redesign helped productivity.,negative,Tests whether the model ignores the soft negation and focuses on 'helped productivity',neutral,0.7156,False
+13,domain_shift,The surgeon described the recovery process as painful but manageable.,neutral,Medical wording may trigger negative sentiment even though the sentence is mostly informational,neutral,0.7762,True
+14,domain_shift,Analysts called the rollout cautious but stable.,neutral,Formal business-news style wording instead of direct review language,neutral,0.8262,True
+15,domain_shift,The coach praised the rookie for staying calm under pressure.,positive,The integration task showed uncertainty when praise was directed toward a person,positive,0.7127,True
+16,domain_shift,Researchers observed fewer synchronization errors after the patch.,positive,Formal third-person wording unlike typical app reviews,neutral,0.6864,False
+17,domain_shift,The article compared the software competition to an arms race.,neutral,Uses aggressive language in a descriptive news context,negative,0.5456,False
+18,sarcasm,"Amazing security update, now even I can't get into my account.",negative,Positive wording hides an obvious complaint,positive,0.8459,False
+19,sarcasm,Great job turning login verification into cyber warfare.,negative,Sarcastic praise mixed with the same conflict language that confused the model earlier,positive,0.8461,False
+20,sarcasm,Nice to see the app freeze before I could save anything.,negative,Starts positive but the actual event is negative,positive,0.7756,False
+21,sarcasm,Love spending five minutes searching for the settings menu.,negative,Uses a positive word in a frustrated context,positive,0.8712,False
+22,sarcasm,"Fantastic, another update that fixes nothing I reported.",negative,Tests whether the model overweights the positive opening word,positive,0.8959,False
+23,length_extreme,Still fighting it.,negative,Very short sentence with vague conflict wording and little context,negative,0.6977,True
+24,length_extreme,Actually stable now.,positive,Very short positive sentence with minimal detail,neutral,0.7342,False
+25,length_extreme,Not painful anymore.,positive,Very short negated sentiment tied to the earlier health-word hypothesis,neutral,0.6659,False
+26,length_extreme,"After reinstalling the app twice, resetting all notification permissions manually, clearing old cache folders, and waiting through several forced restarts, the synchronization issue finally became less frequent but still shows up often enough that I don't fully trust the platform yet.",neutral,Long review where the sentiment shifts several times before ending uncertain,neutral,0.5683,True
+27,length_extreme,"The developers appear to have invested considerable effort into refining the desktop client over the last few updates, although some account recovery steps still feel unnecessarily complicated during normal use.",neutral,Long formal sentence with both praise and criticism mixed together,neutral,0.7079,True
+28,other,The developer behind the accessibility changes deserves real credit.,positive,The integration task suggested the model struggled when praise was directed at a person instead of the app,neutral,0.437,False
+29,other,Whoever redesigned the onboarding flow clearly spent time thinking about new users.,positive,Praise aimed more at the designer than the product itself,negative,0.6209,False
+30,other,The application was observed to consume fewer resources after extended testing.,positive,Passive voice and formal structure are different from the training distribution,neutral,0.6836,False
+31,other,One could argue that the interface introduces unnecessary complexity.,negative,Indirect criticism written in a formal tone instead of normal review wording,neutral,0.7333,False
+32,other,Most users in our office adapted to the redesign faster than expected.,positive,Third-person workplace-style observation instead of personal opinion,neutral,0.5173,False
+33,other,The platform appears functional under limited testing conditions.,neutral,Detached and formal wording without clear emotional sentiment,neutral,0.6778,True
